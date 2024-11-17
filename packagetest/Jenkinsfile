@@ -5,7 +5,7 @@ pipeline {
         stage ('GetProject') {
             steps {
                 //git branch:'master', url:'https://github.com/JamesSheridanCode/PackageSpringBoot.git'
-                git 'https://github.com/JamesSheridanCode/Springboot3.git'
+                git 'https://github.com/JamesSheridanCode/Springboot4.git'
             }
         }
         stage ('build') {
