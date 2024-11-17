@@ -1,7 +1,15 @@
 pipeline {
     agent any
 
+
     stages {
+
+        stage('Checkout') {
+                            steps {
+                                // This checkout clones the whole repository into Jenkins workspace
+                                checkout scm
+                            }
+                        }
         stage ('GetProject') {
             steps {
                 //git branch:'master', url:'https://github.com/JamesSheridanCode/PackageSpringBoot.git'
