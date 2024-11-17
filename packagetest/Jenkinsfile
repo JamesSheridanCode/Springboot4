@@ -53,7 +53,7 @@ pipeline {
 
         stage ('Deploy'){
             steps {
-                    sh 'docker build -f Dockerfile -t myapp . '
+                    sh 'sudo docker build -f Dockerfile -t myapp . '
                    }
         }
     }
