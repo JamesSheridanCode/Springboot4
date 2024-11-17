@@ -42,13 +42,20 @@ pipeline {
                 }
             }
         }
-    }
-        post {
-            success {
 
-                archiveArtifacts allowEmptyArchive: true,
-                    artifacts: '**/packagetest*.war'
-            }
+        stage ('Archive') {
+                    steps {
+
+                        archiveArtifacts allowEmptyArchive: true,
+                            artifacts: '**/packagetest*.war'
+                    }
         }
+
+        stage ('Deploy')
+            steps {
+                    sh 'docker build -f Dockerfile -t myapp . '
+                   }
+    }
+
 
 }
