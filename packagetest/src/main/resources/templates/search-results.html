@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Search Results</title>
+</head>
+<body>
+<h1>Search Results</h1>
+
+<table>
+    <thead>
+    <tr>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Author</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="petition : ${searchResults}">
+        <td th:text="${petition.title}"></td>
+        <td th:text="${petition.description}"></td>
+        <td th:text="${petition.author}"></td>
+        <td>
+            <form th:action="@{/view-petition}" method="get">
+                <input type="hidden" name="id" th:value="${petition.id}" />
+                <button type="submit">View Petition</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<a href="/petitions">Back to Petitions List</a>
+</body>
+</html>

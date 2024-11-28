@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>View Petition</title>
+</head>
+<body>
+<h1>View Petition</h1>
+
+<!-- Petition Details -->
+<div>
+    <h2 th:text="${petition.title}"></h2>
+    <p><strong>Description:</strong> <span th:text="${petition.description}"></span></p>
+    <p><strong>Author:</strong> <span th:text="${petition.author}"></span></p>
+    <p><strong>Email:</strong> <span th:text="${petition.email}"></span></p>
+</div>
+
+<hr />
+
+<!-- Signs List -->
+<div>
+    <h3>Supporters:</h3>
+    <table>
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Comment</th>
+            <th>Signed On</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="sign : ${signs}">
+            <td th:text="${sign.signerName}"></td>
+            <td th:text="${sign.signerComment}"></td>
+            <td th:text="${#dates.format(sign.createdAt, 'yyyy-MM-dd HH:mm')}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<hr />
+
+<!-- Sign Petition Form -->
+<div>
+    <h3>Sign This Petition</h3>
+    <form th:action="@{/sign-petition}" method="post">
+        <!-- Hidden field for petition ID -->
+        <input type="hidden" name="petitionId" th:value="${petition.id}" />
+
+        <!-- Name Field -->
+        <label for="signerName">Your Name:</label>
+        <input type="text" id="signerName" name="signerName" required />
+        <br />
+
+        <!-- Comment Field -->
+        <label for="signerComment">Your Comment:</label>
+        <textarea id="signerComment" name="signerComment" required></textarea>
+        <br />
+
+        <!-- Submit Button -->
+        <button type="submit">Sign Petition</button>
+    </form>
+</div>
+
+<a href="/petitions">Back to Petitions List</a>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Petitions List</title>
+</head>
+<body>
+<h1>List of Petitions</h1>
+
+<a href="/search-petitions">Search Petitions</a>
+<a href="/create-petition" style="margin-left: 20px;">Create a Petition</a>
+
+<table>
+    <thead>
+    <tr>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Author</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="petition : ${petitions}">
+        <td th:text="${petition.title}"></td>
+        <td th:text="${petition.description}"></td>
+        <td th:text="${petition.author}"></td>
+        <td>
+            <form th:action="@{/view-petition}" method="get">
+                <input type="hidden" name="id" th:value="${petition.id}" />
+                <button type="submit">View Petition</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
